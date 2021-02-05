@@ -11,7 +11,17 @@ header > .row > .col-12 {
 }
 .navbar a {
 	padding: 0px 10px;
+	color: #fff;
+	text-decoration: none;
 }
 .navbar-text {
 	padding: 0.5rem 1rem;
+	color: #fff !important;
+}
+.navbar {
+	background: #007bff;
+	padding: 1rem;
+}
+.logout {
+	cursor: pointer;
 }

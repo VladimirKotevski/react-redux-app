@@ -1,24 +1,53 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {Container, Row} from 'react-bootstrap';
-import HeaderMenu from './HeaderMenu';
+import { NavLink } from 'react-router-dom';
+import {Container, Col, Row, Navbar, Nav} from 'react-bootstrap';
+import { logout } from '../actions/users';
 
-const Header = (props) => (
+class Header extends React.Component {
+  render() {
+    this.state = {
+        userName: this.props.user[0] ? this.props.user[0].userName : '',
+        id: this.props.user[0] ? this.props.user[0].id : ''
+      
+    };
+    const logOut = () => {
+      this.props.dispatch(logout( this.state.id))
+    };
+    return (
+      <header>
+      <Container>
+        <h1>React Redux app</h1>
+      </Container>
+      <Row>
+      <Col xs={12}>
+        <Navbar expand="lg">
+          <Container>
+          <Nav className="mr-auto">
+            <NavLink to="/" exact={true}>Game browser</NavLink>
+          </Nav>
+          {this.state.userName ? (
+            <React.Fragment>
+              <NavLink to="/setings">Settings</NavLink>
+              <Navbar.Text>
+              Signed in as: {this.state.userName}
+              </Navbar.Text>
+              <Navbar.Text className="logout" onClick={logOut}>
+              Log out
+              </Navbar.Text>
+            </React.Fragment>
+          ) : <NavLink to="/login">Log in</NavLink> }
+          </Container>
+        </Navbar>
+      </Col>
+      </Row>
+      </header>
+    );
+  }
+}
 
-  <header>
-    <Container>
-    <h1>Test app</h1>
-    </Container>
-    <HeaderMenu 
-    {...props}
-    />
-  </header>
-);
 
 const mapStateToProps = (state, props) => {
-  console.log(props)
-  const vlade = state.users.filter(x => x.isAuthenticated == true)
-  console.log('so e ova' , vlade)
   return {
     user: state.users.filter(x => x.isAuthenticated == true)
   };
