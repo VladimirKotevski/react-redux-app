@@ -32,8 +32,10 @@ export default class EditForm extends React.Component {
     return (
       <Container className="form-container">
         <Row className="justify-content-center">
+        <Col xs={12} className="text-center">
+        <h1>Edit your user name</h1>
+        </Col>
         <Col md={6} xs={12}>
-        {this.state.error && <p>{this.state.error}</p>}
         <Form onSubmit={this.onSubmit}>
           <Form.Group controlId="userName">
             <Form.Label>User Name</Form.Label>
@@ -47,6 +49,7 @@ export default class EditForm extends React.Component {
             Edit user
           </Button>
         </Form>
+        {this.state.error && <p className="alert-msg">{this.state.error}</p>}
         </Col>
         </Row>
       </Container>

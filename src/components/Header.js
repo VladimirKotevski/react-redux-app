@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { withRouter } from "react-router";
 import {Container, Col, Row, Navbar, Nav} from 'react-bootstrap';
 import { logout } from '../actions/users';
 
 class Header extends React.Component {
   render() {
+    console.log(this.props)
     this.state = {
         userName: this.props.user[0] ? this.props.user[0].userName : '',
         id: this.props.user[0] ? this.props.user[0].id : ''
@@ -13,6 +15,7 @@ class Header extends React.Component {
     };
     const logOut = () => {
       this.props.dispatch(logout( this.state.id))
+      this.props.history.push('/');
     };
     return (
       <header>
@@ -47,10 +50,10 @@ class Header extends React.Component {
 }
 
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state, props, context) => {
   return {
     user: state.users.filter(x => x.isAuthenticated == true)
   };
 };
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));

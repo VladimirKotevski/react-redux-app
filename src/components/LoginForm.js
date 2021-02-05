@@ -23,7 +23,7 @@ export default class LoginForm extends React.Component {
     e.preventDefault();
 
     if (!this.state.userName || !this.state.password) {
-      this.setState(() => ({ error: 'Please provide userName and password.' }));
+      this.setState(() => ({ error: 'Please provide user name and password.' }));
     } else {
       this.setState(() => ({ error: '' }));
       this.props.onSubmit({
@@ -36,8 +36,10 @@ export default class LoginForm extends React.Component {
     return (
       <Container className="form-container">
         <Row className="justify-content-center">
+        <Col xs={12} className="text-center">
+        <h1>Login form</h1>
+        </Col>
         <Col md={6} xs={12}>
-        {this.state.error && <p>{this.state.error}</p>}
         <Form onSubmit={this.onSubmit}>
           <Form.Group controlId="userName">
             <Form.Label>User Name</Form.Label>
@@ -59,6 +61,7 @@ export default class LoginForm extends React.Component {
             Login
           </Button>
         </Form>
+        {this.state.error && <p className="alert-msg">{this.state.error}</p>}
         </Col>
         </Row>
       </Container>
