@@ -50,7 +50,7 @@ class Header extends React.Component {
 }
 
 
-const mapStateToProps = (state, props, context) => {
+const mapStateToProps = (state, props) => {
   return {
     user: state.users.filter(x => x.isAuthenticated == true)
   };
