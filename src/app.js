@@ -11,15 +11,9 @@ import './styles/styles.scss';
 
 const store = configureStore();
 
-store.dispatch(addUser({ userName: 'Vladimir', password: 'test', isAuthenticated: false }));
-store.dispatch(addUser({ userName: 'Vladimir1', password: 'test1', isAuthenticated: false }));
-store.dispatch(addUser({ userName: 'Vladimir2', password: 'test2', isAuthenticated: false }));
+store.dispatch(addUser({ userName: 'vladimir', password: 'vladimir123', isAuthenticated: false }));
+store.dispatch(addUser({ userName: 'testing', password: 'testing123', isAuthenticated: false }));
 
-console.log('test', store.getState())
-
-store.subscribe(() => {
-  console.log('test2', store.getState());
-});
 
 const state = store.getState();
 
