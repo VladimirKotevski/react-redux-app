@@ -18,7 +18,17 @@ export default (state = usersReducerDefaultState, action) => {
           return user;
         };
       });
-   
+    case 'EDIT_USER':
+      return state.map((user) => {
+        if (user.id === action.user.id) {
+          return {
+            ...user,
+            userName : action.user.userName
+          };
+        } else {
+          return user;
+        };
+      });
     case 'LOGOUT':
       return state.map((user) => {
         if (user.id === action.id) {
